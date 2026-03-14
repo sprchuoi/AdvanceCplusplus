@@ -13,12 +13,12 @@ class DSU {
     }
     // @function find the parent of the node
     // @param input is the value of the node that we want to fidn the parent
-    // @return the parent value of the node
+    // @return the parent value of the node , to update the time complexity for this algorith , we using the path compressing to optimize the root . example after we find to root , we will update that parent node to direct root we found
     int find(int value){
       if(parent[value] == value){
         return value;
       }
-      return find(parent[value]);
+      return parent[value] = find(parent[value]); // path compressing
     }
     // @function this is the function that we want to merge from the value 2 with the value 1
     void unit(int value1 , int value2){
@@ -44,6 +44,6 @@ int main(void){
   // cout<<a.find(2) <<endl;
   // cout<<a.find(3) <<endl;
   // parent of 1 is 1 , parent of 2 is 1, because parent of 3 is 3 
-  assert(a.find(2) == 2);
+  assert(a.find(2) == 1);
   return 0;
 }
